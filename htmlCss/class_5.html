@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>semantic tag and CSS </title>
+
+<style>
+ .image{
+   float: left;
+ }
+
+ .image > img{
+  border-radius: 50%;
+  /* box-shadow:x y blur spreadness color ; 
+  */
+  box-shadow:2px 3px 5px 2px black ;
+ }
+
+
+ .content{
+  
+ }
+
+</style>
+
+</head>
+<body>
+ <!-- by default block 
+ inline 
+ -->
+
+<header style="border:1px solid black ;">
+ 
+ <h3> Lorem, ipsum dolor.</h3>
+
+</header>
+
+<section >
+
+ <div class="image">
+   <img src="./old/sample2.jpg" style="width: 200px; height: 200px;" alt="">
+ </div>
+
+ <div class="content">
+   <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi quibusdam nisi architecto quae accusantium sequi eligendi magnam, totam ducimus placeat voluptates enim nobis velit nihil atque quos reiciendis saepe incidunt ratione? Quas expedita officiis ut. Repellendus voluptate, asperiores quasi quos odit quia expedita accusamus temporibus pariatur tempore maxime, possimus enim?
+   </p>
+ </div>
+
+</section>
+
+<section>
+
+</section>
+<!-- this  -->
+<section>
+
+ <details>
+  <summary>some content here </summary>
+ 
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit porro maxime, harum rem aliquid facilis expedita consequatur iure beatae fuga perspiciatis, nulla quidem quas doloribus eligendi. Excepturi ad nemo tempora dolore quisquam, in beatae, veniam maxime provident, delectus debitis vero perferendis culpa labore magnam non! Inventore molestias soluta, blanditiis quisquam vel possimus recusandae, consectetur neque quidem, facilis iure. Corrupti neque culpa quas dignissimos eum quisquam reprehenderit harum. Autem nostrum ipsam, dolorem consequuntur veritatis temporibus eaque magni laborum id ipsa fugit atque dignissimos aliquam fugiat, quo rerum magnam pariatur maxime enim similique repellendus voluptas reiciendis necessitatibus neque! Iste quaerat necessitatibus eaque.</p>
+ 
+ </details>
+
+
+
+</section>
+
+
+
+<footer>
+  
+</footer>
+
+</body>
+</html>

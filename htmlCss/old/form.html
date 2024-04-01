@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FORM tag</title>
+
+    <!-- 
+
+     inline css
+     internal css
+     external css
+     -->
+    <style>
+      /*
+      classes multiple time canbe called 
+      id unique 
+      */
+
+      .abc {
+        background-color: black;
+      }
+
+      .abc2 {
+        color: white;
+      }
+
+      input[type="text"] {
+        color: rebeccapurple;
+        font-weight: bolder;
+        background: transparent;
+        border: none;
+        outline: none;
+        text-transform: uppercase;
+        border-bottom: 1px solid rebeccapurple;
+      }
+
+      input[type="text"]::placeholder {
+        color: rebeccapurple;
+        font-weight: lighter;
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+
+  <body class="abc abc2">
+    <form class="abc abc2" action="#" method="POST">
+      <fieldset>
+        <legend>REGISTRATION FORM</legend>
+
+        <br />
+        <label for="userName">ENTER YOUR USER NAME : </label>
+        <input
+          type="text"
+          id="userName"
+          placeholder="enter username here..."
+          name="userName"
+          required
+        />
+        <br />
+        <br />
+
+        <label for="email">ENTER YOUR EMAIL : </label>
+        <input
+          type="email"
+          id="email"
+          name="EMAIL"
+          placeholder="enter email here..."
+          required
+        />
+        <br />
+
+        <label for="pswd" style="color: brown">ENTER YOUR PASSWORD: </label>
+        <input
+          type="password"
+          id="pswd"
+          name="pswd"
+          placeholder="enter password here..."
+          required
+          style="color: brown"
+        />
+
+        <br />
+
+        <label for="">GENDER:</label>
+        <input type="radio" name="gender" id="male" />
+        <label for="male">M</label>
+
+        <input type="radio" name="gender" id="F" />
+        <label for="F">F</label>
+
+        <br />
+
+        <label for="books">BOOKS: </label>
+        <select name="books" id="books">
+          <option value="">SELECT ANYONE</option>
+
+          <optgroup label="BOOK A">
+            <option value="book1">book1</option>
+            <option value="book2">book2</option>
+            <option value="book3">book3</option>
+          </optgroup>
+
+          <optgroup label="BOOK B">
+            <option value="book1">book1</option>
+            <option value="book2">book2</option>
+            <option value="book3">book3</option>
+          </optgroup>
+        </select>
+
+        <br />
+
+        <label for="desc">DESCRIPTION</label>
+        <br />
+        <textarea name="" id="desc" cols="10" rows="5"></textarea>
+
+        <br />
+        <button type="submit">SUBMIT</button>
+        <br />
+      </fieldset>
+    </form>
+  </body>
+</html>
