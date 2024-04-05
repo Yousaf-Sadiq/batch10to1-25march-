@@ -2,11 +2,47 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Grid system</title>
     <link rel="stylesheet" href="./grid.css" />
+    <link rel="stylesheet" href="./gridresponsive.css" />
   </head>
   <body>
+    <style>
+      .hamburger {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .hamburger > span {
+        background-color: black;
+        padding: 0.1rem;
+        margin-top: 0.4rem;
+        height: 2px;
+        width: 10%;
+        transition:transform 0.75s ease-in-out ;
+      }
+      #toggle:checked ~ .hamburger > span:nth-child(2) {
+        display: none;
+      }
+      #toggle:checked ~ .hamburger > span:nth-child(1) {
+        transform: translateY(10px) rotate(45deg);
+      }
+      #toggle:checked ~ .hamburger > span:nth-child(3) {
+        transform: rotate(-45deg);
+      }
+
+      #toggle{
+        display: none;
+      }
+    </style>
+
     <div class="container">
       <!-- div.child.item$*9 -->
       <div class="child item1">header</div>
@@ -19,6 +55,54 @@
       <!-- <div class="child item8">8</div>
  <div class="child item9">9</div> -->
     </div>
+<style>
+  .flex{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    padding: 2rem;
+  }
+  .flex > span {
+    padding: 1rem;
+    position: absolute;
+    left: 0px;
+    font-size: 5rem;
+    z-index: -1;
+    color: #FAC769;
+    font-weight: bolder;
+  }
+
+  .flex >div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    width: 30%;
+  }
+
+</style>
+<div class="flex">
+  <span>01.</span>
+  <div>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+  </div>
+</div>
+
+   <div style="width:30%">
+    <input type="checkbox" id="toggle" />
+    <label for="toggle" class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+   </div>
 
     <br />
     <br />

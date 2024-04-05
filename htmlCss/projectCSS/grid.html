@@ -55,6 +55,45 @@
       <!-- <div class="child item8">8</div>
  <div class="child item9">9</div> -->
     </div>
+<style>
+  .flex{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    padding: 2rem;
+  }
+  .flex > span {
+    padding: 1rem;
+    position: absolute;
+    left: 0px;
+    font-size: 5rem;
+    z-index: -1;
+    color: #FAC769;
+    font-weight: bolder;
+  }
+
+  .flex >div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    width: 30%;
+  }
+
+</style>
+<div class="flex">
+  <span>01.</span>
+  <div>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+  </div>
+</div>
 
    <div style="width:30%">
     <input type="checkbox" id="toggle" />
