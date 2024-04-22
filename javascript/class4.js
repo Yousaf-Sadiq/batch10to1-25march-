@@ -74,13 +74,18 @@ function sumArray(q) {
 function printTable(number, end = 10) {
   let abc = "";
   // let product=1;
-  for (let i = 1; i <= end; i++) {
+  for (let i = 0; i <= end; i++) {
+    //            2     x  0  =  2
     //            2     x  1  =  2
+    //            2     x  2  =  4
+
     let product = number * i;
 
+    //            2     x  3  =  6
     abc += `${number}  x ${i} = ${product} <br>`;
   }
 
+  // let result = [$var1,$var2];
   return abc;
 }
 
