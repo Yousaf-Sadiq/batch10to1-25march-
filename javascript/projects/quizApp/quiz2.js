@@ -30,17 +30,31 @@ function displayQuiz() {
   let quiz_container = document.querySelector("#quiz-container");
   let question = document.querySelector("#question");
   let options = document.querySelector("#options");
+  let table = document.querySelector("#table");
+  let tbody = document.querySelector("tbody");
+  let th = document.querySelector("#th");
+  let length = document.querySelector("#length");
   // ======================================================================
 
   if (index < quizLength) {
+    length.innerHTML = `${index + 1} of ${quizLength}`;
     let currentQuiz = quizData[index];
     // print question
     question.innerHTML = currentQuiz.question;
+    th.innerHTML = currentQuiz.question;
 
     let count = 1;
     options.innerHTML = "";
     // print options
+
     currentQuiz.option.forEach(function (values) {
+      let tr = document.createElement("tr");
+
+      tbody.appendChild(tr);
+
+      let td1 = document.createElement("td");
+      tr.appendChild(td1);
+
       let input = document.createElement("input");
       input.type = "radio";
       input.value = values;
@@ -48,16 +62,18 @@ function displayQuiz() {
       input.name = "quiz";
       input.id = values + "_" + count;
 
-      options.appendChild(input);
+      td1.appendChild(input);
 
       let label = document.createElement("label");
       label.innerHTML = values;
-
       label.setAttribute("for", values + "_" + count);
+      let td2 = document.createElement("td");
+      tr.appendChild(td2);
+      td2.appendChild(label);
 
       // label.for =values+"_"+count
 
-      input.after(label);
+      // input.after(label);
 
       count++;
     });
@@ -75,6 +91,16 @@ function displayQuiz() {
     let button = document.createElement("button");
     button.onclick = function () {
       checkAnwser();
+
+      let allTr = document.getElementsByTagName("tr");
+      if (allTr) {
+        console.log(allTr);
+        for (let removed = 1; removed <= 4; removed++) {
+          console.log(allTr[removed]);
+          console.log(removed);
+          allTr[removed].remove();
+        }
+      }
     };
     button.id = "NEXT";
     button.innerHTML = "NEXT";
