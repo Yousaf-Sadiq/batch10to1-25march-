@@ -2,6 +2,8 @@ let todo = document.querySelector("#todo");
 let error = document.querySelector("#error");
 
 if (localStorage.getItem("todo")) {
+ // localStorage.removeItem("todo");
+
   todo.innerHTML = localStorage.getItem("todo");
 
   let button = document.querySelector("#btn");
