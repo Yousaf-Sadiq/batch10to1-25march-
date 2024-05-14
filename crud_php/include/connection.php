@@ -6,6 +6,7 @@ const PASSWORD="";
 const DB="25march_db";
 
 $conn= new mysqli(SERVER,User_name,PASSWORD,DB);
+// $conn= mysqli_connect(SERVER,User_name,PASSWORD,DB);
 
 if ($conn) {
  // echo "established";
