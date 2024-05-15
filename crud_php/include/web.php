@@ -15,6 +15,11 @@ const HOME = server1 . "/home.php";
 
 const insert = server1 . "/action/form_action.php";
 
+const update_submit= server1 . "/action/form_action.php";
+
+
+
+const UPDATE = server1 ."/update.php";
 
 
 ?>

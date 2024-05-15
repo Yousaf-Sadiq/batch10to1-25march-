@@ -4,9 +4,9 @@ require_once dirname(__FILE__) . "/layout/user/header.php";
 
 // echo HOME;
 ?>
+<h1> HOME</h1>
 
-
-<form class=" p-5 m-5" style="background-color: black;" action="<?php echo insert ?>" method="POST">
+<form class=" p-5 m-5 rounded" style="background-color: black;" action="<?php echo insert ?>" method="POST">
  <div class="mb-3">
   <label for="exampleInputEmail1" class="form-label">Email address</label>
   <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -22,7 +22,12 @@ require_once dirname(__FILE__) . "/layout/user/header.php";
  </div>
 
  <input type="submit" name="insert" value="SUBMIT" class="btn btn-primary">
+
+
 </form>
+
+
+
 
 
 <div class="table-responsive">
@@ -60,7 +65,22 @@ require_once dirname(__FILE__) . "/layout/user/header.php";
       <td><?php echo $row["user_id"] ?></td>
       <td><?php echo $row["user_name"] ?></td>
       <td><?php echo $row["email"] ?></td>
-      <td>button</td>
+      <td>
+       <div class="card">
+        <div class="card-body d-flex justify-content-center">
+         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+         <a href="<?php echo UPDATE; ?>?id=<?php echo $row["user_id"]  ?>" class="btn btn-info">EDIT</a>
+
+         <button type="button" class="btn btn-danger">DELETE</button>
+          
+       
+         </div>
+        </div>
+       </div>
+
+
+
+      </td>
      </tr>
 
     <?php } ?>
@@ -69,9 +89,12 @@ require_once dirname(__FILE__) . "/layout/user/header.php";
   </table>
   <?php
 
- }
- ?>
+ } else {
+  ?>
 
+  <h1> DATA NOT FOUND</h1>
+
+ <?php } ?>
 </div>
 
 
