@@ -2,12 +2,18 @@
 
 // define("ROOTPATH","http://localhost/");
 
-const ROOTPATH = "http://localhost/";
+const ROOTPATH = "http://localhost/"; // absolute path 
+
+define("ROOTPATH2",$_SERVER['DOCUMENT_ROOT']); // relative path 
+
 
 const Folder = "25marchbatch/crud_php";
 
 
+
+
 const server1 = ROOTPATH . Folder;
+const server2 = ROOTPATH2 ."/". Folder;
 
 
 const HOME = server1 . "/home.php";

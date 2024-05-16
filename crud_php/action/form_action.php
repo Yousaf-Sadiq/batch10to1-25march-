@@ -15,6 +15,45 @@ require_once dirname(__DIR__) . "/layout/user/header.php";
 
 <?php
 
+if (isset($_POST["fileUpload"]) && !empty($_POST["fileUpload"])) {
+
+ // $file = $_FILES["image"];
+ $ext = ["jpg", "jpeg", "png"];
+ $file = FILE_UPLOAD("image", $ext, "asset/images");
+
+ if ($file == false) {
+  // $status["error"]++;
+
+ }
+ pre($file);
+
+ // pre($file);
+
+ // $file_name = rand(1, 99) . "_" . $file["name"];
+ // $tmp_name = $file["tmp_name"];
+
+
+ // $ext = ["jpg", "jpeg", "png"];
+
+ // $fileExt = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));  // PNG  JPG
+
+ // if (!in_array($fileExt, $ext)) {
+
+ //  echo strtoupper(implode(" , ",$ext)) ." ALLOWED EXTENTION";
+ // }
+
+
+ // // upload through relative path 
+ // $destination = server2 . "/asset/images/" . $file_name;
+
+
+ // // if (move_uploaded_file($tmp_name, $destination)) {
+ // //  echo "FILE UPLOADED";
+ // // }
+
+}
+
+
 if (isset($_POST["update"]) && !empty($_POST["update"])) {
 
  $email = filter_data($_POST["email"]);

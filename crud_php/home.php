@@ -6,6 +6,18 @@ require_once dirname(__FILE__) . "/layout/user/header.php";
 ?>
 <h1> HOME</h1>
 
+<form enctype="multipart/form-data" action="<?php echo insert ?>" class=" p-5 m-5 rounded" style="background-color: black;" method="post">
+
+ <div class="mb-3">
+  <label for="" class="form-label">Choose file</label>
+  <input type="file" class="form-control" name="image" id="" placeholder="" aria-describedby="fileHelpId" />
+  <div id="fileHelpId" class="form-text">Help text</div>
+ </div>
+
+ <input type="submit" name="fileUpload" value="UPLOAD">
+</form>
+
+
 <form class=" p-5 m-5 rounded" style="background-color: black;" action="<?php echo insert ?>" method="POST">
  <div class="mb-3">
   <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -69,11 +81,11 @@ require_once dirname(__FILE__) . "/layout/user/header.php";
        <div class="card">
         <div class="card-body d-flex justify-content-center">
          <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-         <a href="<?php echo UPDATE; ?>?id=<?php echo $row["user_id"]  ?>" class="btn btn-info">EDIT</a>
+          <a href="<?php echo UPDATE; ?>?id=<?php echo $row["user_id"] ?>" class="btn btn-info">EDIT</a>
 
-         <button type="button" class="btn btn-danger">DELETE</button>
-          
-       
+          <button type="button" class="btn btn-danger">DELETE</button>
+
+
          </div>
         </div>
        </div>

@@ -59,4 +59,46 @@ function pre(array $a)
  echo "</pre>";
 }
 
+
+
+function FILE_UPLOAD(string $input, array $ext, string $to)
+{
+ $file = $_FILES[$input];
+
+ $extention = $ext;
+
+ $file_name = rand(1, 99) . "_" . $file["name"];
+
+ $tmp_name = $file["tmp_name"];
+
+
+ $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+
+ if (!in_array($file_ext, $extention)) {
+
+  return false;
+ }
+
+ $relative_path = server2 . "/" . $to . "/" . $file_name;
+ $absolute_path = server1 . "/" . $to . "/" . $file_name;
+
+ if (move_uploaded_file($tmp_name, $relative_path)) {
+
+  $status = [
+   "relative_path" => $relative_path,
+   "absolute_path" => $absolute_path
+  ];
+
+
+  return $status;
+
+ } else {
+  return "ok";
+ }
+
+
+
+}
+
+
 ?>
