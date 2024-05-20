@@ -15,45 +15,7 @@ require_once dirname(__DIR__) . "/layout/user/header.php";
 
 <?php
 
-if (isset($_POST["fileUpload"]) && !empty($_POST["fileUpload"])) {
-
- // $file = $_FILES["image"];
- $ext = ["jpg", "jpeg", "png"];
- $file = FILE_UPLOAD("image", $ext, "asset/images");
-
- if ($file == false) {
-  // $status["error"]++;
-
- }
- pre($file);
-
- // pre($file);
-
- // $file_name = rand(1, 99) . "_" . $file["name"];
- // $tmp_name = $file["tmp_name"];
-
-
- // $ext = ["jpg", "jpeg", "png"];
-
- // $fileExt = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));  // PNG  JPG
-
- // if (!in_array($fileExt, $ext)) {
-
- //  echo strtoupper(implode(" , ",$ext)) ." ALLOWED EXTENTION";
- // }
-
-
- // // upload through relative path 
- // $destination = server2 . "/asset/images/" . $file_name;
-
-
- // // if (move_uploaded_file($tmp_name, $destination)) {
- // //  echo "FILE UPLOADED";
- // // }
-
-}
-
-
+// update form with file
 if (isset($_POST["update"]) && !empty($_POST["update"])) {
 
  $email = filter_data($_POST["email"]);
@@ -61,6 +23,8 @@ if (isset($_POST["update"]) && !empty($_POST["update"])) {
  $pswd = filter_data($_POST["pswd"]);
 
  $user_id = filter_data(base64_decode($_POST["_token"]));
+
+ $profile = $_FILES["image"];
 
  // if record exist or not 
 
@@ -112,9 +76,86 @@ if (isset($_POST["update"]) && !empty($_POST["update"])) {
 
  }
 
+ // case 1 if file is uploading then 
+
+ if (isset($profile["name"]) && !empty($profile["name"])) {
+
+  // ======================================
+
+  $file_check = "SELECT * FROM `user_address` WHERE `user_id`='{$user_id}'";
+
+  $file_check_exe = $conn->query($file_check);
+
+  if ($file_check_exe->num_rows > 0) {
+
+   $file_fetch = $file_check_exe->fetch_assoc();
+
+   $OldFile = json_decode($file_fetch["image"], true);
+
+   if (isset($OldFile)) {
+    // for deleting old file 
+
+    if (file_exists($OldFile["relative_path"])) {
+     unlink($OldFile["relative_path"]);
+    }
+   }
 
 
 
+  }
+
+  // $file = json_encode($file);
+
+  // ======================================
+
+
+  $ext = ["jpg", "png", "jpeg"];
+
+  $file = FILE_UPLOAD("image", $ext, "asset/images");
+
+  // for file uploading check
+  if (isset($file["error"])) {
+   if ($file["error"] == 1) {
+    $status["error"]++;
+    array_push($status["msg"], "FILE UPLOADING ERROR");
+   }
+  }
+
+  // extention error
+  if ($file == false) {
+   $status["error"]++;
+   $allowed = strtoupper(implode(" , ", $ext));
+
+   array_push($status["msg"], "{$allowed} ONLY ALLOWED");
+  }
+
+ } else {
+
+  $file_check = "SELECT * FROM `user_address` WHERE `user_id`='{$user_id}'";
+
+  $file_check_exe = $conn->query($file_check);
+
+  if ($file_check_exe->num_rows > 0) {
+
+   $file_fetch = $file_check_exe->fetch_assoc();
+
+   if (!isset($file_fetch["image"])) {
+    $file = null;
+   } else {
+
+    $file = json_decode($file_fetch["image"], true);
+
+   }
+
+
+
+
+  } else {
+   $file = null;
+  }
+
+
+ }
 
 
 
@@ -162,6 +203,57 @@ if (isset($_POST["update"]) && !empty($_POST["update"])) {
   // redirect_url(HOME);
  } else {
 
+
+  // case 1 if image is uploading and data remain same then: 
+
+
+
+  // pre($file);
+
+  // die;
+// one to one 
+
+
+  $address_check = "SELECT * FROM `user_address` WHERE `user_id`='{$user_id}'";
+
+  $address_check_exe = $conn->query($address_check);
+
+
+
+  if ($file != null) {
+
+   $file = json_encode($file);
+
+  } else {
+   $file = null;
+  }
+
+
+  if ($address_check_exe->num_rows > 0) {
+
+   $fetch_address = $address_check_exe->fetch_assoc();
+
+   $address_update = "UPDATE `user_address` SET `image`='{$file}',
+   `user_id`='{$user_id}' WHERE `user_id`='{$user_id}' ";
+
+   $address_update_exe = $conn->query($address_update);
+
+
+  } else {
+
+   $address_insert = "INSERT INTO `user_address`( `image`, `user_id`)
+    VALUES ('{$file}','{$user_id}')";
+
+   $address_insert_exe = $conn->query($address_insert);
+
+
+   $fetch_address["address_id"] = $conn->insert_id;
+
+
+  }
+
+
+
   $hash = password_hash($pswd, PASSWORD_BCRYPT);
 
 
@@ -169,7 +261,7 @@ if (isset($_POST["update"]) && !empty($_POST["update"])) {
 
 
   $update = "UPDATE `users` SET `user_name`='{$user_name}', 
-  `password`='{$hash}', `ptoken`='{$encrpyt}' WHERE `user_id`='{$user_id}' ";
+  `password`='{$hash}', `ptoken`='{$encrpyt}',`address_id`='{$fetch_address["address_id"]}' WHERE `user_id`='{$user_id}' ";
 
   $exe_update = $conn->query($update);
 

@@ -83,6 +83,7 @@ function FILE_UPLOAD(string $input, array $ext, string $to)
  $absolute_path = server1 . "/" . $to . "/" . $file_name;
 
  if (move_uploaded_file($tmp_name, $relative_path)) {
+ // if (false) {
 
   $status = [
    "relative_path" => $relative_path,
@@ -93,7 +94,9 @@ function FILE_UPLOAD(string $input, array $ext, string $to)
   return $status;
 
  } else {
-  return "ok";
+
+  $status["error"] = 1;
+  return $status;
  }
 
 
