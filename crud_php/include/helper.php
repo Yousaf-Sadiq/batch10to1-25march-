@@ -65,12 +65,14 @@ function FILE_UPLOAD(string $input, array $ext, string $to)
 {
  $file = $_FILES[$input];
 
- $extention = $ext;
+
 
  $file_name = rand(1, 99) . "_" . $file["name"];
 
  $tmp_name = $file["tmp_name"];
 
+ 
+ $extention = $ext;
 
  $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
 

@@ -12,9 +12,10 @@ const Folder = "25marchbatch/crud_php";
 
 
 
-const server1 = ROOTPATH . Folder;
-const server2 = ROOTPATH2 ."/". Folder;
+const server1 = ROOTPATH . Folder; // absolute path 
 
+
+const server2 = ROOTPATH2 ."/". Folder; // relative path
 
 const HOME = server1 . "/home.php";
 
