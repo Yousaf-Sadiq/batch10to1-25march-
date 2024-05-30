@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 * overriding 
 * overloading
+
 * 1.	Check two given numbers and return true if one of the numbers is 50 or if their sum is 50.
 * 2.	Check from the given integer, whether it is positive or negative.
 * 3.	Check whether a given number is even or odd.

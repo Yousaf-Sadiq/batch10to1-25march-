@@ -1,5 +1,9 @@
 <?php
 declare(strict_types=1);
+
+namespace encapsulation;
+
+require_once "trait/encapsulation.php";
 // oops 
 
 // ================object oreinted programming===============
@@ -25,24 +29,7 @@ class AreaOfRectangle
  private $width;
  private $area;
 
-
- public function Setlength(float $l)
- {
-  $this->length = $l;
- }
-
- public function SetWidth(float $w)
- {
-  $this->width = $w;
- }
-
-
- public function calculate(): float|int
- {
-  $this->area = $this->length * $this->width;
-
-  return $this->area;
- }
+use \rectangle;
 
 
 }
