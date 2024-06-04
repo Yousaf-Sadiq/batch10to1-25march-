@@ -1,0 +1,62 @@
+<?php
+declare(strict_types=1);
+namespace App\database;
+
+use CheckTable;
+
+require_once dirname(__FILE__)."/trait/insert.php";
+require_once dirname(__FILE__)."/trait/checkTable.php";
+
+class DB
+{
+
+ 
+ private $HOST = "localhost";
+ private $username = "root";
+ private $pass = "";
+ private $db = "25march_db";
+
+ private $exe;
+
+ private $query;
+
+
+ protected $conn;
+
+ private $result = [];
+ // insert function 
+ use \Insert,CheckTable;
+
+
+ public function __construct()
+ {
+
+  $this->conn = new \mysqli($this->HOST, $this->username, $this->pass, $this->db);
+
+  if ($this->conn) {
+   // echo "established";
+  } else {
+   echo $this->conn->error;
+  }
+
+ }
+
+
+
+
+
+
+
+// ==================check table function===========================================
+ 
+
+ public function __destruct()
+ {
+  $this->conn->close();
+ }
+
+
+
+
+}
+?>
