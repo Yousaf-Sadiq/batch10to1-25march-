@@ -3,14 +3,15 @@ declare(strict_types=1);
 namespace App\database;
 
 use CheckTable;
+use mysqli;
 
-require_once dirname(__FILE__)."/trait/insert.php";
-require_once dirname(__FILE__)."/trait/checkTable.php";
+require_once dirname(__FILE__) . "/trait/insert.php";
+require_once dirname(__FILE__) . "/trait/checkTable.php";
 
 class DB
 {
 
- 
+
  private $HOST = "localhost";
  private $username = "root";
  private $pass = "";
@@ -25,7 +26,7 @@ class DB
 
  private $result = [];
  // insert function 
- use \Insert,CheckTable;
+ use \Insert, CheckTable;
 
 
  public function __construct()
@@ -47,8 +48,8 @@ class DB
 
 
 
-// ==================check table function===========================================
- 
+ // ==================check table function===========================================
+
 
  public function __destruct()
  {
@@ -58,5 +59,26 @@ class DB
 
 
 
+}
+
+
+class helper extends DB
+{
+ public function pre(array $a)
+ {
+  echo "<pre>";
+  print_r($a);
+  echo "</pre>";
+ }
+
+ public function filter_data(string $data){
+
+  $data = trim($data);
+  $data = htmlspecialchars($data);
+  $data = stripslashes($data);
+  $data = $this->conn->real_escape_string($data);
+
+  return $data;
+ }
 }
 ?>

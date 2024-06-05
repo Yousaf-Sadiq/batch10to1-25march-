@@ -28,6 +28,17 @@ class AreaOfRectangle
  private $length;
  private $width;
  private $area;
+  
+
+
+
+
+
+
+
+
+
+ 
 
 use \rectangle;
 
