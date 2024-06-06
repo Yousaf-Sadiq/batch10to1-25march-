@@ -37,19 +37,42 @@ if (isset($_POST["insert"]) && !empty($_POST["insert"])) {
  }
 
 
+
+
+
  if (!isset($password) || empty($password)) {
   $status["error"]++;
   array_push($status["msg"], "Password is required");
 
  }
 
- 
 
-if ($status["error"] > 0) {
- 
- echo json_encode($status);
-}
+ $c_email = "SELECT * FROM `users` WHERE `email`='{$email}'";
+ $check = $db->sql($c_email, true);
 
+ if ($check) {
+  $status["error"]++;
+  array_push($status["msg"], "Email ALREADY EXIST");
+ }
+
+
+ if ($status["error"] > 0) {
+
+  echo json_encode($status);
+ } else {
+
+
+  $data = [
+   "email" => $email,
+   "password" => password_hash($password, PASSWORD_BCRYPT),
+   "ptoken" => base64_encode($password)
+  ];
+
+
+  echo $db->insert("users", $data);
+
+
+ }
 
 }
 ?>

@@ -2,11 +2,10 @@
 declare(strict_types=1);
 namespace App\database;
 
-use CheckTable;
-use mysqli;
 
 require_once dirname(__FILE__) . "/trait/insert.php";
 require_once dirname(__FILE__) . "/trait/checkTable.php";
+require_once dirname(__FILE__) . "/trait/mysql.php";
 
 class DB
 {
@@ -26,7 +25,7 @@ class DB
 
  private $result = [];
  // insert function 
- use \Insert, CheckTable;
+ use \Insert, \CheckTable,\Mysql;
 
 
  public function __construct()

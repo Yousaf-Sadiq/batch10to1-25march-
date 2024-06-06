@@ -22,12 +22,12 @@ $obj = new DB;
 <form class="m-5 p-5 text-bg-dark"  id="Myform" method="POST">
  <div class="mb-3">
   <label for="exampleInputEmail1" class="form-label">Email address</label>
-  <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
  </div>
  <div class="mb-3">
   <label for="exampleInputPassword1" class="form-label">Password</label>
-  <input type="password" name="pswd" class="form-control" id="exampleInputPassword1">
+  <input type="password" name="pswd" class="form-control" id="pswd">
  </div>
  <div class="mb-3 form-check">
   <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -46,18 +46,26 @@ require_once dirname(__FILE__) . "/layout/user/footer.php";
 
 <script>
 
+
+
+
+
  let form =document.querySelector("#Myform");
+ let email =document.querySelector("#email");
+ let pswd =document.querySelector("#pswd");
 
  form.addEventListener("submit",async function(a){
   a.preventDefault();
 
   let url = "<?php echo form_action ?>";
+  
+
 
   let formData = new FormData(form);
   
   const option={
    method:"POST",
-   body:formData
+   body:formData,
   }
 
   let data =await fetch(url,option);
@@ -66,6 +74,23 @@ require_once dirname(__FILE__) . "/layout/user/footer.php";
 
   console.log(response)
 
- })
+  if (response.error > 0) {
 
+
+    response.msg.forEach(msg => {
+      showMsg("error",msg,"danger")
+    });
+  }
+  else{
+
+    showMsg("error",response.msg,"success")
+  }
+
+  email.value=""
+  pswd.value= ""
+
+
+ })
+ 
 </script>
+
