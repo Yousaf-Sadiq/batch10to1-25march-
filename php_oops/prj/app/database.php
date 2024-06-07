@@ -5,7 +5,9 @@ namespace App\database;
 
 require_once dirname(__FILE__) . "/trait/insert.php";
 require_once dirname(__FILE__) . "/trait/checkTable.php";
-require_once dirname(__FILE__) . "/trait/mysql.php";
+require_once dirname(__FILE__) . "/trait/Custom_sql.php";
+require_once dirname(__FILE__) . "/trait/select.php";
+require_once dirname(__FILE__) . "/trait/FetchData.php";
 
 class DB
 {
@@ -25,7 +27,8 @@ class DB
 
  private $result = [];
  // insert function 
- use \Insert, \CheckTable,\Mysql;
+
+ use \Insert, \CheckTable,\Mysql,\Select,\FetchData;
 
 
  public function __construct()
@@ -79,5 +82,8 @@ class helper extends DB
 
   return $data;
  }
+
+
+ 
 }
 ?>
