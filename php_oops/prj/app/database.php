@@ -8,6 +8,7 @@ require_once dirname(__FILE__) . "/trait/checkTable.php";
 require_once dirname(__FILE__) . "/trait/Custom_sql.php";
 require_once dirname(__FILE__) . "/trait/select.php";
 require_once dirname(__FILE__) . "/trait/FetchData.php";
+require_once dirname(__FILE__) . "/trait/update.php";
 
 class DB
 {
@@ -28,7 +29,7 @@ class DB
  private $result = [];
  // insert function 
 
- use \Insert, \CheckTable,\Mysql,\Select,\FetchData;
+ use \Insert, \CheckTable,\Mysql,\Select,\FetchData,\Update;
 
 
  public function __construct()
