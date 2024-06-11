@@ -124,6 +124,25 @@ if (isset($_POST["EDIT"]) && !empty($_POST["EDIT"])) {
 
  }
 
+ if (!isset($user_id) || empty($user_id)) {
+  $status["error"]++;
+  array_push($status["msg"], "TOkEN IS REQUIRED");
+
+ }
+
+ $check_user = "SELECT * FROM `users` WHERE `user_id`='{$user_id}'";
+
+ $exe_check = $db->sql($check_user, true);
+
+
+ if ($exe_check) {
+
+ } else {
+  $status["error"]++;
+  array_push($status["msg"], "TOKEN IS INVALID");
+ }
+
+
  $c_email = "SELECT * FROM `users` WHERE `email`='{$email}' AND `user_id` <> {$user_id} ";
  $check = $db->sql($c_email, true);
 
@@ -151,4 +170,15 @@ if (isset($_POST["EDIT"]) && !empty($_POST["EDIT"])) {
 
  }
 }
+
+if (isset($_POST["DELETES"]) && !empty($_POST["DELETES"])) {
+
+ $user_id = $help->filter_data($_POST["_token"]);
+
+
+ echo $db->delete("users", "`user_id`='{$user_id}'");
+
+}
+
+
 ?>

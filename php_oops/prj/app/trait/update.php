@@ -11,14 +11,17 @@ trait Update
    "msg" => []
   ];
 
-  // UPDATE `table` SET `col`='[value-1] ,`col`='[value-1]   'WHERE 1
+  // UPDATE `table` SET `col`='[value-1]' ,`col`='[value-1]   WHERE 1
 
   if ($this->checkTable($table)) {
+                                   
    $updates = "";
+
+
    foreach ($data as $key => $value) {
     $updates .= " `{$key}`='{$value}' ,";
    }
-
+                                   
    $updates = rtrim($updates, ",");
 
    $this->query = "UPDATE `{$table}` SET {$updates} WHERE {$where} ";
@@ -28,10 +31,14 @@ trait Update
    if ($this->exe) {
 
     if ($this->conn->affected_rows > 0) {
+
      array_push($status["msg"], "DATA HAS BEEN UPDATED");
+    
     } else {
      $status["error"]++;
+
      array_push($status["msg"], "DATA REMAIN SAME");
+     
     }
    } else {
     $status["error"]++;
